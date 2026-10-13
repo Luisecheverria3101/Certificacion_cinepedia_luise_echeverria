@@ -1,0 +1,106 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #eef1f5;
+  color: #222;
+  margin: 0;
+}
+
+/* Barra de arriba */
+header {
+  background-color: #14213d;
+  padding: 15px 30px;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 5px solid #f2a900;
+}
+header a { color: white; text-decoration: none; }
+header nav a { margin-left: 20px; }
+.logo { font-size: 24px; font-weight: bold; }
+
+main {
+  max-width: 900px;
+  margin: 25px auto;
+  padding: 0 15px;
+}
+
+/* Cajas blancas */
+.caja {
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  padding: 20px;
+}
+.caja-formulario {
+  max-width: 600px;
+  margin: 0 auto 20px auto;
+}
+.dos-columnas {
+  display: flex;
+  gap: 25px;
+}
+.dos-columnas .caja { flex: 1; }
+
+/* Formularios */
+label { display: block; margin-top: 12px; font-weight: bold; }
+input, textarea {
+  width: 100%;
+  padding: 8px;
+  margin-top: 4px;
+  box-sizing: border-box;
+  border: 1px solid #aaa;
+  border-radius: 4px;
+}
+button, .boton {
+  background-color: #14213d;
+  color: white;
+  border: none;
+  padding: 9px 18px;
+  margin-top: 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 14px;
+}
+.errores { color: red; list-style: none; padding: 0; }
+
+/* Tabla */
+.titulo-fila {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+table { width: 100%; background-color: white; border-collapse: collapse; }
+th, td { padding: 10px; border: 1px solid #ccc; text-align: left; }
+th { background-color: #dde3ed; }
+.acciones { display: flex; gap: 12px; align-items: center; }
+.acciones form { margin: 0; }
+.link-rojo {
+  background: none;
+  color: red;
+  padding: 0;
+  margin: 0;
+  text-decoration: underline;
+}
+
+/* Comentarios */
+.comentarios {
+  background-color: #353b4a;
+  color: white;
+  padding: 20px;
+  border-radius: 6px;
+}
+.fila { display: flex; gap: 10px; }
+.fila button { margin-top: 4px; }
+.comentario {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #667;
+  padding: 10px 0;
+}
+.rojo { background-color: #d32f2f; margin-top: 0; }
+.error-claro { color: #ffb4ab; }
+
+/* Para pantallas chicas (celular) */
+@media (max-width: 700px) {
+  .dos-columnas { flex-direction: column; }
+}
