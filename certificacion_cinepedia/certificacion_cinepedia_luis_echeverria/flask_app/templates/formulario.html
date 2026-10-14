@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<section class="caja caja-formulario">
+  <h2>{{ titulo_pagina }}</h2>
+
+  {% if errores %}
+    <ul class="errores">
+      {% for error in errores %}<li>{{ error }}</li>{% endfor %}
+    </ul>
+  {% endif %}
+
+  {# Sin action: el formulario se envía a la misma página #}
+  <form method="post">
+    <label>Nombre de Peli:</label>
+    <input type="text" name="titulo" value="{{ datos.titulo or '' }}">
+
+    <label>Director:</label>
+    <input type="text" name="director" value="{{ datos.director or '' }}">
+
+    <label>Fecha Estreno:</label>
+    <input type="date" name="fecha_estreno" value="{{ datos.fecha_estreno or '' }}">
+
+    <label>Sinopsis:</label>
+    <textarea name="sinopsis" rows="6">{{ datos.sinopsis or '' }}</textarea>
+
+    <button type="submit">Guardar Película</button>
+  </form>
+</section>
+{% endblock %}

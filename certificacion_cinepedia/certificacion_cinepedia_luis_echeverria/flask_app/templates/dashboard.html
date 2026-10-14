@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="titulo-fila">
+  <h2>Bienvenido, {{ session.nombre }}</h2>
+  <a class="boton" href="/cine/nueva">Nueva Peli</a>
+</div>
+
+<table>
+  <tr>
+    <th>Película</th>
+    <th>Director</th>
+    <th>Fecha de Estreno</th>
+    <th>Acciones</th>
+  </tr>
+  {% for p in peliculas %}
+  <tr>
+    <td>{{ p.titulo }}</td>
+    <td>{{ p.director }}</td>
+    <td>{{ p.fecha_estreno }}</td>
+    <td class="acciones">
+      <a href="/cine/{{ p.id }}">Ver</a>
+      {# Editar y Borrar solo si la película es del usuario #}
+      {% if p.usuario_id == session.usuario_id %}
+        <a href="/cine/editar/{{ p.id }}">Editar</a>
+        <form action="/cine/borrar/{{ p.id }}" method="post">
+          <button type="submit" class="link-rojo">Borrar</button>
+        </form>
+      {% endif %}
+    </td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}

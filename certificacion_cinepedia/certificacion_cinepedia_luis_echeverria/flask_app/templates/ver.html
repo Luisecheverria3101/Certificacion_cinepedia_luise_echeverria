@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<section class="caja caja-formulario">
+  <h2>{{ pelicula.titulo }}</h2>
+  <p><b>Publicado por:</b> {{ pelicula.publicador }}</p>
+  <p><b>Director:</b> {{ pelicula.director }}</p>
+  <p><b>Fecha:</b> {{ pelicula.fecha_estreno }}</p>
+  <p><b>Sinopsis:</b> {{ pelicula.sinopsis }}</p>
+</section>
+
+<section class="comentarios caja-formulario">
+  <h3>Comentarios</h3>
+
+  {% for mensaje in get_flashed_messages() %}
+    <p class="error-claro">{{ mensaje }}</p>
+  {% endfor %}
+
+  {% if puede_comentar %}
+    <form action="/cine/{{ pelicula.id }}/comentar" method="post" class="fila">
+      <input type="text" name="contenido" placeholder="Escribe un comentario...">
+      <button type="submit">Enviar</button>
+    </form>
+  {% else %}
+    <p>No puedes comentar tu propia película.</p>
+  {% endif %}
+
+  {% for c in comentarios %}
+    <div class="comentario">
+      <div>
+        <b>{{ c.nombre }} - {{ c.created_at.strftime("%d/%m/%Y") }}</b>
+        <p>{{ c.contenido }}</p>
+      </div>
+      {# El botón Borrar solo aparece en los comentarios propios #}
+      {% if c.usuario_id == session.usuario_id %}
+        <form action="/cine/comentario/borrar/{{ c.id }}" method="post">
+          <button type="submit" class="rojo">Borrar</button>
+        </form>
+      {% endif %}
+    </div>
+  {% else %}
+    <p>Todavía no hay comentarios.</p>
+  {% endfor %}
+</section>
+{% endblock %}

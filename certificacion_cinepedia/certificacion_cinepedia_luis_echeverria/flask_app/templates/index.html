@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block contenido %}
+<div class="dos-columnas">
+
+  <section class="caja">
+    <h2>Registro</h2>
+    {% if errores_registro %}
+      <ul class="errores">
+        {% for error in errores_registro %}<li>{{ error }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+    <form action="/registro" method="post">
+      <label>Nombre</label>
+      <input type="text" name="nombre" value="{{ nombre or '' }}">
+      <label>Apellido</label>
+      <input type="text" name="apellido" value="{{ apellido or '' }}">
+      <label>E-mail</label>
+      <input type="text" name="email" value="{{ email or '' }}">
+      <label>Contraseña</label>
+      <input type="password" name="password">
+      <label>Conf. Contraseña</label>
+      <input type="password" name="confirmar">
+      <button type="submit">Registrar</button>
+    </form>
+  </section>
+
+  <section class="caja">
+    <h2>Inicio de Sesión</h2>
+    {% if errores_login %}
+      <ul class="errores">
+        {% for error in errores_login %}<li>{{ error }}</li>{% endfor %}
+      </ul>
+    {% endif %}
+    <form action="/login" method="post">
+      <label>E-mail</label>
+      <input type="text" name="email_login" value="{{ email_login or '' }}">
+      <label>Contraseña</label>
+      <input type="password" name="password_login">
+      <button type="submit">Iniciar Sesión</button>
+    </form>
+  </section>
+
+</div>
+{% endblock %}
