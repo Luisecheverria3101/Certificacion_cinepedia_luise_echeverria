@@ -10,7 +10,7 @@ from flask_app.models.comentario import (
 
 
 def datos_del_formulario():
-    """Saca los datos de la película desde el formulario."""
+    """Saca los datos de la película desde el formulario"""
     return {
         "titulo": request.form["titulo"].strip(),
         "director": request.form["director"].strip(),
@@ -55,7 +55,7 @@ def editar(id):
         return redirect("/cine")
 
     if request.method == "GET":
-        # Mostramos el formulario con los datos de la película
+        # Mostramos el formulario con los datos de la pelicula
         return render_template("formulario.html", titulo_pagina="Editar Película", datos=pelicula, errores=[])
 
     datos = datos_del_formulario()
